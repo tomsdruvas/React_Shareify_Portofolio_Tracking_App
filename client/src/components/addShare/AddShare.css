@@ -1,0 +1,140 @@
+body {
+  background-color: #151d26;
+  color: #0faebf;
+}
+
+.container-box {
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
+  display: flex;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #151d26;
+  color: #0faebf;
+}
+
+#add-page-container {
+  width: auto;
+  margin-right: 25%;
+  margin-left: 5%;
+}
+
+#current-container {
+  width: 300px;
+  margin-right: auto;
+  margin-left: 5%;
+}
+
+.add-container {
+  background-color: #2d3c59;
+  border: solid 1px lightgrey;
+  border-radius: 5%;
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border: solid 1px white;
+}
+
+#calc-page-container {
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 2rem;
+}
+
+.calculator-container {
+  background-color: #2d3c59;
+  border: solid 1px lightgrey;
+  border-radius: 5%;
+  width: auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2.2rem;
+  text-align: center;
+}
+
+.fetch-shares-container {
+  text-align: center;
+}
+
+.display-share-list-container {
+  border: solid 1px lightgrey;
+  border-radius: 5%;
+  margin: 2rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  text-align: justify;
+}
+
+.add-share-container {
+  border: solid 1px lightgrey;
+  border-radius: 5%;
+  margin: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.display-list {
+  flex-direction: column-reverse;
+}
+
+.clear-list {
+  margin-bottom: 0.5rem;
+  margin-right: 1rem;
+  text-align: right;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 1rem;
+  float: left;
+  clear: left;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.display {
+  margin-bottom: 1rem;
+}
+
+.info {
+  cursor: pointer;
+}
+
+.redHover:hover {
+  color: #f24968;
+  cursor: pointer;
+  position: relative;
+  right: -1px;
+  top: -1px;
+  height: auto;
+  display: block;
+  z-index: 999;
+}
+
+input {
+  width: 45%;
+  padding: 4px 10px;
+  margin: 8px 14px;
+  box-sizing: border-box;
+}
+
+.big-red {
+  font-size: larger;
+  color: #f24968;
+}
+
+.white {
+  color: white;
+}
