@@ -107,7 +107,8 @@ let mockOptions = {
             // mockData[i][1]*10, // open
             // mockData[i][2]*10, // high
             // mockData[i][3]*10, // low
-            Math.floor(Number(mockData[i][4]))*100 // close
+            Math.floor(Number(mockData[i][4]))// close
+            // fasdfs
           ]);
         }
         return ohlcData;

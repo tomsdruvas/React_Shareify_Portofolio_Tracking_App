@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SharesGrid from '../components/SharesGrid';
 import '../App.css';
 import '../components/totalValueChart/TotalValueChartDesign.css'
@@ -13,12 +13,14 @@ import TotalValue from '../components/TotalValue';
 import ShareDetails from '../components/ShareDetails';
 
 
-const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo}) => {
+const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShareData}) => {
   const [shareData, setShareData] = useState([])
-  const [selectedShare, setSelectedShare] = useState("MSFT")
+  const [selectedShare, setSelectedShare] = useState("")
   const [chartHeadline, setChartHeadline] = useState(selectedShare)
   const [loading, setLoading] = useState(true)
   const [showCorrectGraph, setShowCorrectGraph] = useState("Total")
+
+
 
   const getShareData = async (symbol) => {
     setLoading(true)
@@ -36,19 +38,6 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo}) => {
               }
       return sharesDataArr.reverse()
     }
-
-    // const timeFrameURL = () => {
-    //     if (selectedTime === "DAILY") {
-    //         return "Time Series (Daily)"
-    //     }
-    //     else if (selectedTime === "WEEKLY") {
-    //         return "Weekly Time Series"
-    //     }
-    //     else if (selectedTime === "MONTHLY") {
-    //         return "Monthly Time Series"
-    //     }
-    // }
-    // const sharesApiURL = `https://www.alphavantage.co/query?function=TIME_SERIES_${timeFrame}&symbol=${symbol}&apikey=${apiKey}`
     const sharesApiURL = `http://localhost:5000/api/sharesData/find/${symbol}`
     return fetch(sharesApiURL)
     .then(respose => respose.json())
@@ -67,7 +56,7 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo}) => {
 
     const renderCorrectChart = () => {
       if (showCorrectGraph === "Total"){
-        return (<TotalValueChart />)
+        return (<TotalValueChart shares={shares} totalShareData={totalShareData} />)
       }
       else if (showCorrectGraph === "Individual") {
         return (<ShareDetails shareData={shareData} selectedShare={selectedShare} chartHeadline={chartHeadline}  />)
@@ -87,6 +76,7 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo}) => {
 
     <div className="top-right"/>
     <div className = "charts">
+    
     {renderCorrectChart()}
     <br />
     <br />

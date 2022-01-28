@@ -14,12 +14,12 @@ const NavBar = () => {
       </div>
       <div className="navbar-button">
       <li>
-        <Link to="/add"><button><i class="fas fa-plus-circle"></i> Add Shares</button></Link>
+        <Link to="/add"><button><i className="fas fa-plus-circle"></i> Add Shares</button></Link>
       </li>
       </div>
       <div className="navbar-button">
       <li>
-        <Link to="/calculator"><button><i class="fas fa-calculator"></i> Calculator</button></Link>
+        <Link to="/calculator"><button><i className="fas fa-calculator"></i> Calculator</button></Link>
       </li>
       </div>
     </ul>
