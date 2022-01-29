@@ -67,12 +67,12 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
 
   return <div className="container">
 
-        <div className="left" className="column">
+        <div  className="column">
 
           <TotalValue chartType={(value) =>setShowCorrectGraph(value)} shares={shares} className="top-left"/>
           <SharesGrid chartType={(value) =>setShowCorrectGraph(value)} getGraph={(symbol) => graphRender(symbol)} className="bottom" removeShareFromDB={removeShareFromDB} updateShareNo={updateShareNo} shares={shares}/>
         </div>
-        <div className="right" className="column">
+        <div  className="column">
 
     <div className="top-right"/>
     <div className = "charts">

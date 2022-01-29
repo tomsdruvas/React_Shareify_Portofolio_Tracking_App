@@ -25,49 +25,65 @@ const TotalValueChart = ({shares}) => {
       return sharesDataArr.reverse()
     }
 
-    const getDataForShare = async (symbol) => {
-        const sharesApiURL = `http://localhost:5000/api/sharesData/find/${symbol}`
+    const getDataForShare = async (share) => {
+        const sharesApiURL = `http://localhost:5000/api/sharesData/find/${share.symbol}`
     const respose = await fetch(sharesApiURL);
         const data = await respose.json();
-        return convertDataForChart(data["data"]);
+        let info = convertDataForChart(data["data"])
+        for (let i = 0; i < info.length; i++){
+            info[i][4] *= share.noOfShares
+        }
+        return info
+        
     }
     
     const getTotalValueDB = async (shares) => {
         
-        let totalValueArr = []
-        await Promise.all(
-        shares.map(async (share, index) => {
-            return getDataForShare(share.symbol).then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                data[i][4] *= share.noOfShares;
-                if (index === 0) {
-                    totalValueArr.push(data[i]);
-                }
-                else {
-                    totalValueArr[i][4] += data[i][4];
-                }
-
-            } 
-        }).catch(err => console.log('There was an error:' + err))
-        
-    }))
-        setLoading(false)
-        console.log("Shares" + shares)
-        // console.log("Data" + totalValueArr)
-        setTotalShareData(totalValueArr)
     
+        const requests = shares.map(async (share, index) => {
+            return getDataForShare(share).then((data) => {
+                return data
+            })
+
+
+            
+        
+        
+    })
+        return Promise.all(requests)
     }
+
     
     useEffect(() => {
         getTotal()
        },[shares]);
      
     const getTotal = () => {
-        getTotalValueDB(shares)
+        getTotalValueDB(shares).then(result => 
+            {
+            let totalValueArr = []
+            result.map((data, index) => {
+                // console.log(data[index])
+                for (let i = 0; i < data.length; i++) {
+                    if (index === 0) {
+                        totalValueArr.push(data[i]);
+                    }
+                    else {
+                        totalValueArr[i][4] += data[i][4];
+                    }
+    
+                }
+
+
+            })
+            return totalValueArr
+            })
+            .then((result) => setTotalShareData(result),setLoading(false))
+            .catch(err=>console.log(err))
     }
 
     const chartFunc = () => {
-            if (loading) {
+            if (loading || !totalShareData) {
                 return <h2>Page is still loading, please wait</h2>
             }
             return <div id="total_value_chart"> <TotalValueChartDesign totalShareData={totalShareData}/></div>
