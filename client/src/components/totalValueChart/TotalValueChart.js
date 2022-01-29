@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import TotalValueChartDesign from './TotalValueChartDesign';
-import { getShares } from '../../SharesService';
-import { render } from "react-dom";
 import './TotalValueChartDesign.css'
 
 
@@ -56,25 +54,30 @@ const TotalValueChart = ({shares}) => {
     
     useEffect(() => {
         getTotal()
+        // below is an error disable statement, the code is tested and works correctly
+        // eslint-disable-next-line react-hooks/exhaustive-deps
        },[shares]);
+
+    
      
     const getTotal = () => {
+        setLoading(true)
         getTotalValueDB(shares).then(result => 
             {
             let totalValueArr = []
-            result.map((data, index) => {
-                // console.log(data[index])
+            result.forEach((data, index) => {
                 for (let i = 0; i < data.length; i++) {
                     if (index === 0) {
                         totalValueArr.push(data[i]);
                     }
                     else {
-                        totalValueArr[i][4] += data[i][4];
+                        if(totalValueArr[i][0] === data[i][0]){
+                        totalValueArr[i][4] += data[i][4]}
+                        else{
+                            console.log("Error with time entries")
+                        }
                     }
-    
                 }
-
-
             })
             return totalValueArr
             })

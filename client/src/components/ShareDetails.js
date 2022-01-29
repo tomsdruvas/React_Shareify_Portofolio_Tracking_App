@@ -10,7 +10,7 @@ import "./totalValueChart/TotalValueChartDesign.css"
 
 
 
-const ShareDetails = ({selectedShare, shareData, chartHeadline}) => {
+const ShareDetails = ({shareData, chartHeadline}) => {
     const apiKey = getApiKey()
     const [shares, setShares] = useState([])
     // const [selectedShare, setSelectedShare] = useState("MSFT")

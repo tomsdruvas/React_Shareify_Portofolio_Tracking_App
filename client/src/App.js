@@ -14,7 +14,7 @@ import CalculatorContainer from './containers/CalculatorContainer';
 
 function App() {
   const apiKey = getApiKey();
-
+  const [loading, setLoading] = useState(true)
   const [shares, setShares] = useState([]);
   const [totalShareData, setTotalShareData] = useState([]);
 
@@ -25,7 +25,7 @@ function App() {
 
   const getAll = () => {
     getShares()
-    .then((allShares) => setShares(allShares));
+    .then((allShares) => setShares(allShares), setLoading(false));
   }
 
 
@@ -54,7 +54,7 @@ function App() {
     <Router>
       <NavBar className = "navbar"/>
       <Routes>
-        <Route path="/" element={<SharesAppContainer shares={shares} totalShareData={totalShareData} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
+        <Route path="/" element={<SharesAppContainer loading={loading} shares={shares} totalShareData={totalShareData} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
         <Route path="/add" element={<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>} />
         <Route path="/calculator" element={<CalculatorContainer/>} />
       </Routes>

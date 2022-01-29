@@ -1,30 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import SharesGrid from '../components/SharesGrid';
 import '../App.css';
 import '../components/totalValueChart/TotalValueChartDesign.css'
-
-import TotalValueChartDesign from "../components/totalValueChart/TotalValueChartDesign";
 import TotalValueChart from "../components/totalValueChart/TotalValueChart";
-
-import NavBar from "../components/NavBar";
 import CurrentValuePortfolioChart from "../components/CurrentValuePortfolioChart";
-import TotalValueContainer from './TotalValueContainer';
 import TotalValue from '../components/TotalValue';
 import ShareDetails from '../components/ShareDetails';
 
 
-const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShareData}) => {
+const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShareData, loading}) => {
   const [shareData, setShareData] = useState([])
-  const [selectedShare, setSelectedShare] = useState("")
-  const [chartHeadline, setChartHeadline] = useState(selectedShare)
-  const [loading, setLoading] = useState(true)
+  const [chartHeadline, setChartHeadline] = useState("")
   const [showCorrectGraph, setShowCorrectGraph] = useState("Total")
 
 
 
   const getShareData = async (symbol) => {
-    setLoading(true)
-
+    
     const convertDataForChart = (inputData) => {
         let sharesDataArr = []
               for (let key in inputData) {
@@ -42,7 +34,7 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
     return fetch(sharesApiURL)
     .then(respose => respose.json())
     .then((data) => 
-        convertDataForChart(data["data"]), setLoading(false))
+        convertDataForChart(data["data"]))
     .catch(err=>console.log(err))
     
     
@@ -55,12 +47,15 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
     }
 
     const renderCorrectChart = () => {
+      if (loading){
+        return <h2>Chart is still loading, please wait</h2>
+      } else{
       if (showCorrectGraph === "Total"){
         return (<TotalValueChart shares={shares} totalShareData={totalShareData} />)
       }
       else if (showCorrectGraph === "Individual") {
-        return (<ShareDetails shareData={shareData} selectedShare={selectedShare} chartHeadline={chartHeadline}  />)
-      }
+        return (<ShareDetails shareData={shareData} chartHeadline={chartHeadline}  />)
+      }}
     }
 
 
