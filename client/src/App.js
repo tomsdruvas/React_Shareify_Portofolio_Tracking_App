@@ -3,7 +3,7 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import SharesAppContainer from './containers/SharesAppContainer';
 import AddShareContainer from './containers/AddShareContainer';
-import {getShares, postShare, deleteShare, updateShare, convertDataForChart, getDataForShare, getTotalValueDB} from './SharesService';
+import {getShares, postShare, deleteShare, updateShare} from './SharesService';
 import getApiKey from './key';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -16,7 +16,6 @@ function App() {
   const apiKey = getApiKey();
   const [loading, setLoading] = useState(true)
   const [shares, setShares] = useState([]);
-  const [totalShareData, setTotalShareData] = useState([]);
 
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function App() {
     <Router>
       <NavBar className = "navbar"/>
       <Routes>
-        <Route path="/" element={<SharesAppContainer loading={loading} shares={shares} totalShareData={totalShareData} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
+        <Route path="/" element={<SharesAppContainer loading={loading} shares={shares} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
         <Route path="/add" element={<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>} />
         <Route path="/calculator" element={<CalculatorContainer/>} />
       </Routes>

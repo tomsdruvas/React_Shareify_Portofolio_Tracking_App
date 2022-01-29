@@ -2,8 +2,6 @@ import React from "react";
 import '../App.css';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import ShareDetails from "./ShareDetails";
-import TotalValueChart from "./totalValueChart/TotalValueChart";
 import "./totalValueChart/TotalValueChartDesign.css"
 
 const CurrentValuePortfolioChart = ({ shares }) => {
@@ -20,7 +18,7 @@ const CurrentValuePortfolioChart = ({ shares }) => {
 
   const arr = [];
   for (let i = 0; i < shares.length; i++) {
-    arr.push({ name: shareName[i], y: percent[i] });
+    arr.push({ name: shareName[i], y: Math.floor(Number(percent[i]))});
   }
 
 
@@ -68,7 +66,7 @@ const CurrentValuePortfolioChart = ({ shares }) => {
     // option.series[0].data[x].y
     series: [
       {
-        name: "Shares",
+        name: "Percent of portofolio",
         colorByPoint: true,
         data: arr,
       },
