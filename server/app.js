@@ -4,16 +4,25 @@ const puppeteer = require("puppeteer");
 const chalk = require("chalk");
 const fetch = require("node-fetch");
 const { default: getApiKey } = require("./key");
-
-
+const MongoClient = require('mongodb').MongoClient
+const ObjectID = require('mongodb').ObjectID;
+const express = require('express');
+const createRouter = require('./helpers/create_router.js')
 
 const urlLocal = "http://localhost:5000/api/shares/";
 const urlApi = (symbol) => {
     return `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${getApiKey}`
+}
 
-} 
+const mongo = await MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
+const db = mongo.db('sharesApp');
+const collection = db.collection('shares');
 
-async function scrapeWorldPopulation() {
+
+
+
+
+async function updateAPI() {
     const getShares = async () => {
             console.log("Getting all the shares", new Date().toLocaleString(), "-----------------------------")
             const res = await fetch(urlLocal)
@@ -90,4 +99,4 @@ async function scrapeWorldPopulation() {
 
 }
 // Schedule a job to run every two minutes
-const job = nodeCron.schedule("1 * * * * *", scrapeWorldPopulation);
+const job = nodeCron.schedule("1 * * * * *", updateAPI);
