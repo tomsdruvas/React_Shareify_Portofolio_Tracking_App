@@ -1,11 +1,12 @@
+const assert = require('assert');
 const nodeCron = require("node-cron");
 const puppeteer = require("puppeteer");
 // const ora = require("ora");
 const chalk = require("chalk");
 const fetch = require("node-fetch");
 const { default: getApiKey } = require("./key");
-const MongoClient = require('mongodb').MongoClient
-const ObjectID = require('mongodb').ObjectID;
+const { ObjectId } = require('mongodb')
+const MongoClient = require("mongodb").MongoClient
 const express = require('express');
 const createRouter = require('./helpers/create_router.js')
 
@@ -14,18 +15,84 @@ const urlApi = (symbol) => {
     return `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${getApiKey}`
 }
 
-const mongo = await MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
-const db = mongo.db('sharesApp');
-const collection = db.collection('shares');
+
+// const urlDb = 'mongodb://127.0.0.1:27017';
+// const client = new MongoClient.connect(urlDb)
+// const db = client.db("sharesApp")
+// const sharesCollection = db.collection('shares');
+
+
+
+/////
+
+async function main(){
+    const uri = 'mongodb://127.0.0.1:27017';
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+ 
+        // Make the appropriate DB calls
+        await  listDatabases(client);
+
+        await findAllShares(client, {
+            
+        });
+ 
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+main().catch(console.error);
+
+
+
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+ 
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
+
+
+async function findAllShares(client, {} = {}) {
+    const cursor = client.db("sharesApp").collection("shares").find(
+                            {
+                            }
+                            ).sort({ name: -1 });
+
+    const results = await cursor.toArray();
+
+    if (results.length > 0) {
+        console.log(`Found shares`);
+        results.forEach((result, i) => {
+            
+
+            console.log();
+            console.log(`${i + 1}. name: ${result.name}`);
+            console.log(`   _id: ${result._id}`);
+            console.log(`   price: ${result.currentPrice}`);
+            console.log(`   Number of shares: ${result.noOfShares}`);
+        });
+    } else {
+        console.log(`No shares found`);
+    }
+}
 
 
 
 
+
+/////
 
 async function updateAPI() {
     const getShares = async () => {
             console.log("Getting all the shares", new Date().toLocaleString(), "-----------------------------")
-            const res = await fetch(urlLocal)
+            const res = await sharesCollection.find().toArray()
             
             return await res.json()
         }
