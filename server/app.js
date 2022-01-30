@@ -6,10 +6,10 @@ const fetch = require("node-fetch");
 const { default: getApiKey } = require("./key");
 
 
-const apiKey = getApiKey()
+
 const urlLocal = "http://localhost:5000/api/shares/";
 const urlApi = (symbol) => {
-    return `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`
+    return `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${getApiKey}`
 
 } 
 
