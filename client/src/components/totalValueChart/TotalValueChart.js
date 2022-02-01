@@ -8,21 +8,6 @@ const TotalValueChart = ({shares}) => {
     const [totalShareData, setTotalShareData] = useState([])
     const [loading, setLoading] = useState(true)
 
-
-    const convertDataForChart = (inputData) => {
-        let sharesDataArr = []
-              for (let key in inputData) {
-          
-                if (inputData.hasOwnProperty(key)) {
-                    let prices = Object.values(inputData[key])
-                    prices = prices.map(Number)
-                    sharesDataArr.push([parseInt((new Date(key).getTime()).toFixed(0))].concat(prices))
-                }
-                  
-              }
-      return sharesDataArr.reverse()
-    }
-
     const getDataForShare = async (share) => {
         const sharesApiURL = `http://localhost:5000/api/sharesData/find/${share.symbol}`
     const respose = await fetch(sharesApiURL);
