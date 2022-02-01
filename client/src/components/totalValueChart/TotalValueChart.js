@@ -27,7 +27,7 @@ const TotalValueChart = ({shares}) => {
         const sharesApiURL = `http://localhost:5000/api/sharesData/find/${share.symbol}`
     const respose = await fetch(sharesApiURL);
         const data = await respose.json();
-        let info = convertDataForChart(data["data"])
+        let info = data["data"]
         for (let i = 0; i < info.length; i++){
             info[i][4] *= share.noOfShares
         }
@@ -71,11 +71,17 @@ const TotalValueChart = ({shares}) => {
                         totalValueArr.push(data[i]);
                     }
                     else {
-                        if(totalValueArr[i][0] === data[i][0]){
-                        totalValueArr[i][4] += data[i][4]}
-                        else{
-                            console.log("Error with time entries")
+                        for (let y=0; y < totalValueArr.length; y++){
+                            if (totalValueArr[y].includes(data[i][0])){
+                                totalValueArr[y][4]+=data[i][4]
+
+                            }
                         }
+                        // if(totalValueArr[i][0] === data[i][0]){
+                        // totalValueArr[i][4] += data[i][4]}
+                        // else{
+                        //     console.log("Error with time entries")
+                        // }
                     }
                 }
             })

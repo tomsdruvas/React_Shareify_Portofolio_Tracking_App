@@ -66,7 +66,7 @@ const respose = await fetch(sharesApiURL);
 
       postShareObject(shareObject);
       const shareDataObject = await getDataForShare(shareObject.symbol)
-      const convertedData = [convertDataForChart(shareDataObject)]
+      const convertedData = convertDataForChart(shareDataObject)
       console.log(convertedData)
       
       
