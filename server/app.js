@@ -25,63 +25,63 @@ const urlApi = (symbol) => {
 
 /////
 
-async function main(){
-    const uri = 'mongodb://127.0.0.1:27017';
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// async function main(){
+//     const uri = 'mongodb://127.0.0.1:27017';
+//     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
+//     try {
+//         // Connect to the MongoDB cluster
+//         await client.connect();
  
-        // Make the appropriate DB calls
-        await  listDatabases(client);
+//         // Make the appropriate DB calls
+//         await  listDatabases(client);
 
-        await findAllShares(client, {
+//         await findAllShares(client, {
             
-        });
+//         });
  
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
+//     } catch (e) {
+//         console.error(e);
+//     } finally {
+//         await client.close();
+//     }
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 
 
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
+// async function listDatabases(client){
+//     databasesList = await client.db().admin().listDatabases();
  
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
+//     console.log("Databases:");
+//     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+// };
 
 
-async function findAllShares(client, {} = {}) {
-    const cursor = client.db("sharesApp").collection("shares").find(
-                            {
-                            }
-                            ).sort({ name: -1 });
+// async function findAllShares(client, {} = {}) {
+//     const cursor = client.db("sharesApp").collection("shares").find(
+//                             {
+//                             }
+//                             ).sort({ name: -1 });
 
-    const results = await cursor.toArray();
+//     const results = await cursor.toArray();
 
-    if (results.length > 0) {
-        console.log(`Found shares`);
-        results.forEach((result, i) => {
+//     if (results.length > 0) {
+//         console.log(`Found shares`);
+//         results.forEach((result, i) => {
             
 
-            console.log();
-            console.log(`${i + 1}. name: ${result.name}`);
-            console.log(`   _id: ${result._id}`);
-            console.log(`   price: ${result.currentPrice}`);
-            console.log(`   Number of shares: ${result.noOfShares}`);
-        });
-    } else {
-        console.log(`No shares found`);
-    }
-}
+//             console.log();
+//             console.log(`${i + 1}. name: ${result.name}`);
+//             console.log(`   _id: ${result._id}`);
+//             console.log(`   price: ${result.currentPrice}`);
+//             console.log(`   Number of shares: ${result.noOfShares}`);
+//         });
+//     } else {
+//         console.log(`No shares found`);
+//     }
+// }
 
 
 
@@ -92,12 +92,13 @@ async function findAllShares(client, {} = {}) {
 async function updateAPI() {
     const getShares = async () => {
             console.log("Getting all the shares", new Date().toLocaleString(), "-----------------------------")
-            const res = await sharesCollection.find().toArray()
+            const res = await fetch(urlLocal)
+            
             
             return await res.json()
         }
         getShares().then((data) => {
-
+            console.log(data)
             async function task(i, sharePrice) { // 3
                 await timer(20000);
                 console.log(`The old price of ${data[i].symbol} is ${data[i].currentPrice} and the new price is ${sharePrice}!`, new Date().toLocaleString());

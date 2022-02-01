@@ -1,4 +1,5 @@
 const baseURL = 'http://localhost:5000/api/shares/'
+const baseURLData = 'http://localhost:5000/api/sharesData'
 
 export const getShares = async () => {
     const res = await fetch(baseURL)
@@ -13,6 +14,17 @@ export const postShare = async (payload) => {
     })
     return await res.json()
 }
+
+
+export const postShareData = async (payload) => {
+    const res = await fetch(baseURLData, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    return await res.json()
+}
+
 
 export const deleteShare = (id) => {
     return fetch(baseURL + id, {

@@ -3,6 +3,8 @@ import ReactTooltip from "react-tooltip";
 import { ToastContainer, toast, Zoom } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import './AddShare.css';
+import { postShareData } from '../../SharesService';
+import getApiKey from '../../key';
 
 
 const AddShare = ({symbolInfo, shareInfo, postShareObject, updateShareInfo}) => {
@@ -22,11 +24,34 @@ const AddShare = ({symbolInfo, shareInfo, postShareObject, updateShareInfo}) => 
     }
   }
 
+  const convertDataForChart = (inputData) => {
+    let sharesDataArr = []
+          for (let key in inputData) {
+      
+            if (inputData.hasOwnProperty(key)) {
+                let prices = Object.values(inputData[key])
+                prices = prices.map(Number)
+                sharesDataArr.push([parseInt((new Date(key).getTime()).toFixed(0))].concat(prices))
+            }
+              
+          }
+  return sharesDataArr.reverse()
+}
+
+const apiKey = getApiKey()
+  const getDataForShare = async (symbol) => {
+    const sharesApiURL = `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=${apiKey}`
+const respose = await fetch(sharesApiURL);
+    const data = await respose.json();
+    return data["Weekly Time Series"]
+    
+}
+
   const [noOfShares, setNoOfShares] = useState("");
 
   const handleOnChange = (event) => setNoOfShares(event.target.value);
 
-  const handleOnSubmit = (event) => {
+  const handleOnSubmit = async (event) => {
 
     event.preventDefault();
 
@@ -39,7 +64,14 @@ const AddShare = ({symbolInfo, shareInfo, postShareObject, updateShareInfo}) => 
         currentPrice: Number(symbolInfo['05. price'])
       } 
 
-      postShareObject(shareObject);        
+      postShareObject(shareObject);
+      const shareDataObject = await getDataForShare(shareObject.symbol)
+      const convertedData = [convertDataForChart(shareDataObject)]
+      console.log(convertedData)
+      
+      
+      postShareData({name: shareObject.symbol,
+      data: convertedData})
     }
 
     updateShareInfo({});
