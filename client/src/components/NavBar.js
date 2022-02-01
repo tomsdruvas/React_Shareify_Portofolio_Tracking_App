@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({chartType}) => {
+
+  const handleShowAddChart = () => {
+    chartType("Add_share")
+  }
+
+  const handleShowHome = () => {
+    chartType("Total")
+  }
+  const handleShowCalc = () => {
+    chartType("Calc")
+  }
+
 
   return (
     <>
@@ -9,17 +21,17 @@ const NavBar = () => {
     <ul className="navbar">
       <div className="navbar-button">
       <li>
-        <Link to="/"><button><i className="fas fa-home"></i> Home</button></Link>
+        <button onClick={handleShowHome}><i className="fas fa-home"></i> Home</button>
       </li>
       </div>
       <div className="navbar-button">
       <li>
-        <Link to="/add"><button><i className="fas fa-plus-circle"></i> Add Shares</button></Link>
+        <><button onClick={handleShowAddChart} ><i className="fas fa-plus-circle"></i> Add Shares</button></>
       </li>
       </div>
       <div className="navbar-button">
       <li>
-        <Link to="/calculator"><button><i className="fas fa-calculator"></i> Calculator</button></Link>
+      <button onClick={handleShowCalc} ><i className="fas fa-calculator"></i> Calculator</button>
       </li>
       </div>
     </ul>

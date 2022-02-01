@@ -27,12 +27,6 @@ function App() {
     .then((allShares) => setShares(allShares), setLoading(false));
   }
 
-
-
-
-
-
-
   const removeShare = (id) => {
     deleteShare(id)
     .then(() => getAll());
@@ -48,13 +42,16 @@ function App() {
     .then(() => getAll());
   }
 
+  
+
+
   return (
     
-    <Router>
-      <NavBar className = "navbar"/>
+    <Router> 
+      
       <Routes>
-        <Route path="/" element={<SharesAppContainer loading={loading} shares={shares} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
-        <Route path="/add" element={<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>} />
+        <Route path="/" element={<SharesAppContainer loading={loading} apiKey={apiKey} removeShare={removeShare} addNewShare={addNewShare} shares={shares} removeShareFromDB={id => removeShare(id)} updateShareNo={(id, payload) => updateNoOfShares(id, payload)}/>} />
+        <Route path="/" element={<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>} />
         <Route path="/calculator" element={<CalculatorContainer/>} />
       </Routes>
     </Router>

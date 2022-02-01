@@ -24,7 +24,7 @@ const CalculatorForm = ({updateRate, updateGrowth, rate, growth}) => {
 
     const annualizedGrowth = (principal, rate, frequency, years) => principal * Math.pow(1 + rate / frequency, frequency * years)
 
-    const display = growth > 0 ? `Based on a starting value of £${principal}, an assumed annual return of ${returns}% and an assumed annual inflation rate of ${inflation}% (giving a real rate of return of ${rate*100}%) - then the final value could be worth £${(Math.round(growth*100)/100).toLocaleString()} in ${years} years (in real terms).` : "";
+    const display = growth > 0 ? <div className="calcResults">Based on a starting value of £{principal}, an assumed annual return of {returns}% and an assumed annual inflation rate of {inflation}% (giving a real rate of return of {rate*100}%) - then the final value could be worth £{(Math.round(growth*100)/100).toLocaleString()} in {years} years (in real terms).</div> : "";
 
     const handleOnSubmit = event => {
 
@@ -44,8 +44,10 @@ const CalculatorForm = ({updateRate, updateGrowth, rate, growth}) => {
 
   return (
     <>
-        <h2>Forecast Calculator</h2>
-        <form onSubmit={handleOnSubmit}>
+     <div className="container-box">
+  <div className="add-container">
+        <h2 className='calcHead'>Forecast Calculator</h2>
+        <form className='calcForm' onSubmit={handleOnSubmit}>
             <label htmlFor="principal">Starting Value:</label><br/>
             <input type="number" id="principal" placeholder="Enter starting value £" onChange={handlePrincipalChange} value={principal} required/><br/><br/>
             <label htmlFor="returns">Assumed Annual Return: </label><br/>
@@ -56,8 +58,11 @@ const CalculatorForm = ({updateRate, updateGrowth, rate, growth}) => {
             <input type="number" id="years" placeholder="Enter years" onChange={handleYearChange} value={years} required/><br/><br/>
             <input type="submit" value="Calculate"/> <br/><br/>
             <button type="button" onClick={handleReset}>Reset</button>
-        </form><br/>
         {display}
+        </form><br/>
+    
+        </div>
+        </div>
     </>
   )
 };

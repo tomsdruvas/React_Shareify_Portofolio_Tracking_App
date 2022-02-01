@@ -9,7 +9,9 @@ const Calculator = () => {
 
   return (
       <>
+ 
       <CalculatorForm updateRate={value => setRate(value)} updateGrowth={value => setGrowth(value)} rate={rate} growth={growth} />
+      
       </>
   );
 };

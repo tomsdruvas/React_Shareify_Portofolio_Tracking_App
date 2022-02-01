@@ -6,9 +6,12 @@ import TotalValueChart from "../components/totalValueChart/TotalValueChart";
 import CurrentValuePortfolioChart from "../components/CurrentValuePortfolioChart";
 import TotalValue from '../components/TotalValue';
 import ShareDetails from '../components/ShareDetails';
+import AddShareContainer from './AddShareContainer';
+import NavBar from "../components/NavBar";
+import Calculator from '../components/calculator/Calculator';
 
 
-const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShareData, loading}) => {
+const SharesAppContainer = ({removeShareFromDB, apiKey, shares, updateShareNo, totalShareData, loading, addNewShare, removeShare}) => {
   const [shareData, setShareData] = useState([])
   const [chartHeadline, setChartHeadline] = useState("")
   const [showCorrectGraph, setShowCorrectGraph] = useState("Total")
@@ -16,30 +19,18 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
 
 
   const getShareData = async (symbol) => {
-    
-    const convertDataForChart = (inputData) => {
-        let sharesDataArr = []
-              for (let key in inputData) {
-          
-                if (inputData.hasOwnProperty(key)) {
-                    let prices = Object.values(inputData[key])
-                    prices = prices.map(Number)
-                    sharesDataArr.push([parseInt((new Date(key).getTime()).toFixed(0))].concat(prices))
-                }
-                  
-              }
-      return sharesDataArr.reverse()
-    }
     const sharesApiURL = `http://localhost:5000/api/sharesData/find/${symbol}`
     return fetch(sharesApiURL)
     .then(respose => respose.json())
     .then((data) => 
-        convertDataForChart(data["data"]))
+        data["data"])
     .catch(err=>console.log(err))
     
     
     
 }
+
+
 
     const graphRender = (symbol) => {
       setChartHeadline(symbol)
@@ -55,12 +46,19 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
       }
       else if (showCorrectGraph === "Individual") {
         return (<ShareDetails shareData={shareData} chartHeadline={chartHeadline}  />)
+      }
+      else if (showCorrectGraph === "Add_share") {
+        return (<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>)
+      }
+      else if (showCorrectGraph === "Calc"){
+        return (<Calculator/>)
       }}
     }
 
 
-
-  return <div className="container">
+  return (<>
+  <NavBar chartType={(value) => setShowCorrectGraph(value)} className = "navbar"/>
+  <div className="container">
 
         <div  className="column">
 
@@ -76,12 +74,13 @@ const SharesAppContainer = ({removeShareFromDB, shares, updateShareNo, totalShar
     <br />
     <br />
     <CurrentValuePortfolioChart className="bottom" shares={shares}/> 
+    
     </div>
         </div>
 
   </div>
 
-
+  </>)
 };
 
 export default SharesAppContainer;

@@ -171,7 +171,28 @@ button {
   z-index: 999;
 }
 
+.calcForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
 
+.calcHead {text-align: center;}
+
+.calcResults {
+  /* background-color: #2d3c59; */
+  /* border: solid 1px lightgrey; */
+  /* border-radius: 5%; */
+  width: 900px;
+  /* margin-right: auto; */
+  /* margin-left: auto; */
+  /* margin-top: 2rem; */
+  /* padding: 2rem; */
+  text-align: center;
+
+}
 
 
 
