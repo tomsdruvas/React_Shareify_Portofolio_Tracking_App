@@ -9,6 +9,8 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {res.send("Hello from the server side")})
+
 MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('sharesApp');
