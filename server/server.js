@@ -3,6 +3,9 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient
 const createRouter = require('./helpers/create_router.js')
 const cors = require('cors');
+const dotenv = require("dotenv")
+
+dotenv.config()
 
 
 
@@ -11,7 +14,7 @@ app.use(cors());
 
 app.get('/', (req, res) => {res.send("Hello from the server side")})
 
-MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
+MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db('sharesApp');
     const sharesCollection = db.collection('shares');
