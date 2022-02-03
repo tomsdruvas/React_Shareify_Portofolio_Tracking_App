@@ -16,7 +16,7 @@ app.get('/', (req, res) => {res.send("Hello from the server side")})
 
 MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
   .then((client) => {
-    const db = client.db('SharesApp');
+    const db = client.db('sharesApp');
     const sharesCollection = db.collection('shares');
     const sharesRouter = createRouter(sharesCollection);
     app.use('/api/shares', sharesRouter);
