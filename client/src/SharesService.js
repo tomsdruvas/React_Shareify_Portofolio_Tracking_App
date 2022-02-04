@@ -16,7 +16,10 @@ const baseURLData = 'http://shareify-app.heroku.com/api/sharesData'
 // const baseURLData = `${dbURL}/api/sharesData/`
 
 export const getShares = async () => {
-    const res = await fetch(baseURL)
+    const res = await fetch(baseURL, {
+        method:"GET",
+        mode: "cors"
+        })
     return await res.json()
 }
 
