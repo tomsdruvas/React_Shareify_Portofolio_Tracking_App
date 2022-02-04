@@ -2,3 +2,5 @@ node_modules
 /key.js
 /connect.js
 .env
+/servertest.js
+/app.js

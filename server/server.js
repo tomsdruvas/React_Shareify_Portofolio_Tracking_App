@@ -7,16 +7,16 @@ const dotenv = require("dotenv")
 
 dotenv.config()
 
-
+const URI = process.env.MONGODB_URI
 
 app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {res.send("Hello from the server side")})
 
-MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
+MongoClient.connect(URI, { useUnifiedTopology: true })
   .then((client) => {
-    const db = client.db('sharesApp');
+    const db = client.db('SharesApp');
     const sharesCollection = db.collection('shares');
     const sharesRouter = createRouter(sharesCollection);
     app.use('/api/shares', sharesRouter);
