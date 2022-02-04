@@ -1,17 +1,9 @@
 
-// const baseURL = 'http://shareify-app.netlify.com/api/shares/'
-// const baseURLData = 'http://shareify-app.netlify.com/api/sharesData'
-
-const baseURL = 'http://localhost:5000/api/shares/'
-const baseURLData = 'http://localhost:5000/api/sharesData'
 
 
+const baseURL = 'https://shareify-app.heroku.com/api/shares'
+const baseURLData = 'https://shareify-app.heroku.com/api/sharesData'
 
-
-// import getDbFunc from "./getDbFunc"
-// const dbURL = getDbFunc()
-// const baseURL = `${dbURL}/api/shares/`
-// const baseURLData = `${dbURL}/api/sharesData/`
 
 export const getShares = async () => {
     const res = await fetch(baseURL)
