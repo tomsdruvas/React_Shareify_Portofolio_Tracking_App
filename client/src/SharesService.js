@@ -44,18 +44,18 @@ export const postShareData = async (payload) => {
 
 
 export const deleteShare = (id) => {
-    return fetch(baseURL + id, {
+    return fetch(`${baseURL}/${id}`, {
         method: 'DELETE'
     })
 }
 
 export const getShare = async (id) => {
-  const res = await fetch(baseURL + id)
+  const res = await fetch(`${baseURL}/${id}`)
     return await res.json()
 }
 
 export const updateShare = (id, payload) => {
-    return fetch(baseURL + id, {
+    return fetch(`${baseURL}/${id}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
