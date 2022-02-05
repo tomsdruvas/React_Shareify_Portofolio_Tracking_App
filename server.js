@@ -13,7 +13,7 @@ const URI = process.env.MONGODB_URI
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {res.send("Hello from the server side")})
+// app.get('/', (req, res) => {res.send("Hello from the server side")})
 
 MongoClient.connect(URI, { useUnifiedTopology: true })
   .then((client) => {
@@ -36,9 +36,9 @@ MongoClient.connect(URI, { useUnifiedTopology: true })
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(process.env.PORT || 5000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
