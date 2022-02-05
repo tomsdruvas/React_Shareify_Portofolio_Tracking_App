@@ -50,6 +50,8 @@ const CurrentValuePortfolioChart = ({ shares }) => {
       series: {
         pointPadding: 0.4,
         borderWidth: 0,
+        pie: {
+          center: [50, 50]},
         dataLabels: {
           enabled: true,
           format: "{point.y:.1f}%",
@@ -75,8 +77,9 @@ const CurrentValuePortfolioChart = ({ shares }) => {
 
 
   return (
-    
+  
       <HighchartsReact highcharts={Highcharts} options={options} />
+      
   );
 };
 

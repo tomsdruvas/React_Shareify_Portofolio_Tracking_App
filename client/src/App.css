@@ -4,7 +4,7 @@ body {
 
 .container {
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0px;
   display: flex;
   box-sizing: border-box;
@@ -52,6 +52,12 @@ ul {
   flex-grow: 1;
   overflow-y: auto;
 }
+
+/* .allocations {
+  display: flex;
+  border-style: double;
+
+} */
 
 .calculator-container {
   background-color: #2d3c59;
