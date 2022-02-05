@@ -9,7 +9,7 @@ const TotalValueChart = ({shares}) => {
     const [loading, setLoading] = useState(true)
 
     const getDataForShare = async (share) => {
-        const sharesApiURL = `http://localhost:5000/api/sharesData/find/${share.symbol}`
+        const sharesApiURL = `https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/find/${share.symbol}`
     const respose = await fetch(sharesApiURL);
         const data = await respose.json();
         let info = data["data"]

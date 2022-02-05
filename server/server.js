@@ -13,7 +13,7 @@ const URI = process.env.MONGODB_URI
 app.use(express.json());
 app.use(cors());
 
-// app.get('/', (req, res) => {res.send("Hello from the server side")})
+app.get('/', (req, res) => {res.send("Hello from the server side")})
 
 MongoClient.connect(URI, { useUnifiedTopology: true })
   .then((client) => {

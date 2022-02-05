@@ -24,7 +24,7 @@ const TotalValueChart = ({shares}) => {
           return sharesDataArr.reverse()
         }
         const getDataForShare = (symbol) => {
-            const sharesApiURL = `http://localhost:5000/api/sharesData/find/${symbol}`
+            const sharesApiURL = `https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/find/${symbol}`
         return fetch(sharesApiURL)
         .then(respose => respose.json())
         .then((data) => 

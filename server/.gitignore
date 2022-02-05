@@ -4,3 +4,4 @@ node_modules
 .env
 /servertest.js
 /app.js
+env_vars.yaml

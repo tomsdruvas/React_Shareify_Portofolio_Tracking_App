@@ -1,9 +1,9 @@
 
-const baseURL = 'http://localhost:5000/api/shares/'
-const baseURLData = 'http://localhost:5000/api/sharesData'
+// const baseURL = 'http://localhost:5000/api/shares/'
+// const baseURLData = 'http://localhost:5000/api/sharesData'
 
-// const baseURL = 'https://shareify-app.heroku.com/api/shares'
-// const baseURLData = 'https://shareify-app.heroku.com/api/sharesData'
+const baseURL = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/shares'
+const baseURLData = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData'
 
 
 
