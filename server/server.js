@@ -3,6 +3,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient
 const createRouter = require('./helpers/create_router.js')
 const cors = require('cors');
+const path = require("path")
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -29,6 +30,14 @@ MongoClient.connect(URI, { useUnifiedTopology: true })
 
 // app.listen(5000, function () {
 //   console.log(`Listening on port ${ this.address().port }`);
+// });
+
+
+app.use(express.static(path.join(__dirname, "client", "build")))
+
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 // });
 
 app.listen(process.env.PORT || 5000, function(){
