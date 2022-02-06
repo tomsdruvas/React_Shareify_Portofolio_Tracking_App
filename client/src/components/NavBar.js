@@ -18,23 +18,24 @@ const NavBar = ({chartType}) => {
   return (
     <>
     
+  
     <ul className="navbar">
-      <div className="navbar-button">
-      <li>
-        <button onClick={handleShowHome}><i className="fas fa-home"></i> Home</button>
+   
+      <li onClick={handleShowHome} >
+        <i className="fas fa-home"> Home</i> 
       </li>
-      </div>
-      <div className="navbar-button">
-      <li>
-        <><button onClick={handleShowAddChart} ><i className="fas fa-plus-circle"></i> Add Shares</button></>
+      
+      <li onClick={handleShowAddChart}>
+      <i  className="fas fa-plus-circle"> Add Shares</i>
       </li>
-      </div>
-      <div className="navbar-button">
-      <li>
-      <button onClick={handleShowCalc} ><i className="fas fa-calculator"></i> Calculator</button>
+      
+      <li onClick={handleShowCalc} >
+      <i className="fas fa-calculator"> Calculator</i>
       </li>
-      </div>
+      
     </ul>
+
+    
     </>
   );
 }
