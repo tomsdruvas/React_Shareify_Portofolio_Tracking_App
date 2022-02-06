@@ -26,7 +26,7 @@ For app to work create a key.js file under client/src.  Obtain a key from https:
 
 ## Demonstrations of the app
 <img src="/demonstration/screenshot_mainview.png" width="800" >
-<img src="/demonstration/screenshot_piechart.png" width="800" >
+
 <img src="/demonstration/screenshot_share.png" width="800" >
 
 
