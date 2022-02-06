@@ -8,6 +8,8 @@ import getApiKey from './key';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CalculatorContainer from './containers/CalculatorContainer';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+
 
 
 
@@ -54,7 +56,10 @@ function App() {
         <Route path="/" element={<AddShareContainer apiKey={apiKey} postShareObject={newShare => addNewShare(newShare)} shares={shares} removeShareFromDB={id => removeShare(id) }/>} />
         <Route path="/calculator" element={<CalculatorContainer/>} />
       </Routes>
+      <ToastContainer theme="dark" transition={Zoom}/>
+      
     </Router>
+    
 
 
   );
