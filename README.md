@@ -25,9 +25,9 @@ For app to work create a key.js file under client/src.  Obtain a key from https:
 - App should be visible in browser `http://localhost:3000`
 
 ## Demonstrations of the app
-<img src="/demonstration/screenshot_mainview.png" width="400" >
-<img src="/demonstration/screenshot_piechart.png" width="400" >
-<img src="/demonstration/screenshot_share.png" width="400" >
+<img src="/demonstration/screenshot_mainview.png" width="800" >
+<img src="/demonstration/screenshot_piechart.png" width="800" >
+<img src="/demonstration/screenshot_share.png" width="800" >
 
 
 ## The Brief - Shares Portfolio Application
