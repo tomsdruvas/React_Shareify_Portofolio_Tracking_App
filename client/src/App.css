@@ -91,6 +91,7 @@ ul {
 .shares-grid {
   display: flex;
   flex-direction: column-reverse;
+  width: 300px;
 }
 
 button {
@@ -116,7 +117,7 @@ button {
 .charts {
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  width: 800px;
   height: 100%;
   padding-left: 50px;
   padding-top: 10px;
@@ -135,6 +136,7 @@ button {
   margin-bottom: 25px;
   background-color: #2d3c59;
   text-align: center;
+  width: 300px;
 }
 
 .navbar{
