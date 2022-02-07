@@ -9,6 +9,8 @@ import ShareDetails from '../components/ShareDetails';
 import AddShareContainer from './AddShareContainer';
 import NavBar from "../components/NavBar";
 import Calculator from '../components/calculator/Calculator';
+import { getShareData } from '../SharesService';
+
 
 
 const SharesAppContainer = ({removeShareFromDB, apiKey, shares, updateShareNo, totalShareData, loading, addNewShare, removeShare}) => {
@@ -18,23 +20,13 @@ const SharesAppContainer = ({removeShareFromDB, apiKey, shares, updateShareNo, t
 
 
 
-  const getShareData = async (symbol) => {
-    const sharesApiURL = `https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/find/${symbol}`
-    return fetch(sharesApiURL)
-    .then(respose => respose.json())
-    .then((data) => 
-        data["data"])
-    .catch(err=>console.log(err))
-    
-    
-    
-}
 
 
 
-    const graphRender = (symbol) => {
-      setChartHeadline(symbol)
-      getShareData(symbol).then((result) => setShareData(result))
+
+    const graphRender = (share) => {
+      setChartHeadline(share.symbol)
+      getShareData(share).then((result) => setShareData(result))
     }
 
     const renderCorrectChart = () => {
@@ -63,7 +55,7 @@ const SharesAppContainer = ({removeShareFromDB, apiKey, shares, updateShareNo, t
         <div  className="column">
 
           <TotalValue chartType={(value) =>setShowCorrectGraph(value)} shares={shares} className="top-left"/>
-          <SharesGrid chartType={(value) =>setShowCorrectGraph(value)} getGraph={(symbol) => graphRender(symbol)} className="bottom" removeShareFromDB={removeShareFromDB} updateShareNo={updateShareNo} shares={shares}/>
+          <SharesGrid chartType={(value) =>setShowCorrectGraph(value)} getGraph={(share) => graphRender(share)} className="bottom" removeShareFromDB={removeShareFromDB} updateShareNo={updateShareNo} shares={shares}/>
         </div>
         <div  className="column">
 

@@ -1,12 +1,11 @@
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
-// const baseURL = 'http://localhost:5000/api/shares/'
-// const baseURLData = 'http://localhost:5000/api/sharesData'
+const baseURL = 'http://localhost:5000/api/shares/'
+const baseURLData = 'http://localhost:5000/api/sharesData/'
 
-const baseURL = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/shares'
+// const baseURL = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/shares/'
+// const baseURLData = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/'
 
-
-const baseURLData = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData'
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const toastText = (message, time) => {
     return (toast.success(message, {
@@ -19,14 +18,6 @@ const toastText = (message, time) => {
         progress: undefined,
         }))
 }
-
-
-
-
-// import getDbFunc from "./getDbFunc"
-// const dbURL = getDbFunc()
-// const baseURL = `${dbURL}/api/shares/`
-// const baseURLData = `${dbURL}/api/sharesData/`
 
 export const getShares = async () => {
     const res = await fetch(baseURL)
@@ -86,44 +77,30 @@ export const updateShare = (id, payload) => {
     // .then(res => res.json())
 }
 
-// export const convertDataForChart = (inputData) => {
-//     let sharesDataArr = []
-//           for (let key in inputData) {
-      
-//             if (inputData.hasOwnProperty(key)) {
-//                 let prices = Object.values(inputData[key])
-//                 prices = prices.map(Number)
-//                 sharesDataArr.push([parseInt((new Date(key).getTime()).toFixed(0))].concat(prices))
-//             }
-              
-//           }
-//   return sharesDataArr.reverse()
-// }
+export const getDataForShare = async (share) => {
+    const sharesApiURL = `${baseURLData}find/${share.symbol}`
+const respose = await fetch(sharesApiURL);
+    const data = await respose.json();
+    let info = data["data"]
+    for (let i = 0; i < info.length; i++){
+        info[i][4] *= share.noOfShares
+    }
+    return info
+    
+}
 
-// export const getDataForShare = async (symbol) => {
-//     const sharesApiURL = `http://localhost:5000/api/sharesData/find/${symbol}`
-// const respose = await fetch(sharesApiURL);
-//     const data = await respose.json();
-//     return convertDataForChart(data["data"]);
-// }
 
-// export const getTotalValueDB = async (shares) => {
-//     let totalValueArr = []
-//     let promises = shares.map(async (share, index) => {
-//         return getDataForShare(share.symbol).then((data) => {
-//         for (let i = 0; i < data.length; i++) {
-//             data[i][4] *= share.noOfShares;
-//             if (index === 0) {
-//                 totalValueArr.push(data[i]);
-//             }
-//             else {
-//                 totalValueArr[i][4] += data[i][4];
-//             }
 
-//         } 
-//     }).catch(err=>console.log(err))
-// })
-// return totalValueArr 
-// }
+export const getShareData = async (share) => {
+    const sharesApiURL = `${baseURLData}find/${share.symbol}`
+    return fetch(sharesApiURL)
+    .then(respose => respose.json())
+    .then((data) => 
+        data["data"])
+    .catch(err=>console.log(err))
+    
+    
+    
+}
 
 

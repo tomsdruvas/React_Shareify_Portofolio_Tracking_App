@@ -8,7 +8,7 @@ const ShareCard = ({share, removeShareFromDB, updateShareNo, getGraph, chartType
   const handleDelete = () => removeShareFromDB(share._id);
   const handleGetGraph = (event) => {
     event.preventDefault();
-    getGraph(share.symbol)
+    getGraph(share)
     chartType("Individual")
   }
   

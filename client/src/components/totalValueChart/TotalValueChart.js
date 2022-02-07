@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { getDataForShare } from '../../SharesService';
 import TotalValueChartDesign from './TotalValueChartDesign';
 import './TotalValueChartDesign.css'
 
@@ -7,18 +8,9 @@ import './TotalValueChartDesign.css'
 const TotalValueChart = ({shares}) => {
     const [totalShareData, setTotalShareData] = useState([])
     const [loading, setLoading] = useState(true)
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    const getDataForShare = async (share) => {
-        const sharesApiURL = `https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/find/${share.symbol}`
-    const respose = await fetch(sharesApiURL);
-        const data = await respose.json();
-        let info = data["data"]
-        for (let i = 0; i < info.length; i++){
-            info[i][4] *= share.noOfShares
-        }
-        return info
-        
-    }
+
     
     const getTotalValueDB = async (shares) => {
         
