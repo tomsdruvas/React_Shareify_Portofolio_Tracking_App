@@ -35,7 +35,7 @@ const createRouter = function (collection) {
 router.get('/find/:name', (req, res) => {
   const inputName = req.params.name
   collection
-    .findOne({ name: inputName})
+    .findOne({ symbol: inputName})
     .then((doc) => res.json(doc))
     .catch((err) => {
       console.error(err)

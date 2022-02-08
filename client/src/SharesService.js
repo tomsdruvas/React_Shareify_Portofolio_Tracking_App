@@ -77,7 +77,7 @@ export const updateShare = (id, payload) => {
 }
 
 export const getDataForShare = async (share) => {
-    const sharesApiURL = `${baseURLData}find/${share.symbol}`
+    const sharesApiURL = `${baseURL}find/${share.symbol}`
 const respose = await fetch(sharesApiURL);
     const data = await respose.json();
     let info = data["data"]
