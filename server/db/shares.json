@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "61fef2053e8453000a4efe94"
+  },
+  "name": "Tesla Inc",
+  "symbol": "TSLA",
+  "noOfShares": 30,
+  "currentPrice": 923.32
+},{
+  "_id": {
+    "$oid": "61fef2c53e8453000a4efe98"
+  },
+  "name": "Moderna Inc",
+  "symbol": "MRNA",
+  "noOfShares": 200,
+  "currentPrice": 163.01
+},{
+  "_id": {
+    "$oid": "61fef2f73e8453000a4efe9a"
+  },
+  "name": "Illumina Inc",
+  "symbol": "ILMN",
+  "noOfShares": 100,
+  "currentPrice": 358.38
+},{
+  "_id": {
+    "$oid": "61fef3283e8453000a4efe9c"
+  },
+  "name": "Shopify Inc - Class A",
+  "symbol": "SHOP",
+  "noOfShares": 50,
+  "currentPrice": 876
+},{
+  "_id": {
+    "$oid": "61fef706350176000a4749e7"
+  },
+  "name": "Amazon.com Inc",
+  "symbol": "AMZN",
+  "noOfShares": 10,
+  "currentPrice": 3152.79
+}]
