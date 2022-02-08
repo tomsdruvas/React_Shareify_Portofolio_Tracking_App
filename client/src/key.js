@@ -1,6 +1,6 @@
 const getApiKey = () => {
-   // return process.env.TODO_API_KEY
-   return `/.netlify/functions/todo`;
+   // return process.env.REACT_APP_TODO_API_KEY
+   // return console.log("HI")
    
 
 }

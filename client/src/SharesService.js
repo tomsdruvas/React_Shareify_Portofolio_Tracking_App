@@ -3,8 +3,8 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 const baseURL = 'http://localhost:5000/api/shares/'
 const baseURLData = 'http://localhost:5000/api/sharesData/'
 
-// const baseURL = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/shares/'
-// const baseURLData = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/sharesData/'
+// const baseURL = process.env.REACT_APP_LOCAL_SHARES
+// const baseURLData = process.env.REACT_APP_LOCAL_SHARES_DATA
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const toastText = (message, time) => {
@@ -25,7 +25,6 @@ export const getShares = async () => {
         toastText("API is loading", 3000)
         await delay(3000)
         const res2 = await fetch(baseURL)
-        console.log(res2.status)
         return await res2.json()
     }
     toastText("API is loading", 1000)
