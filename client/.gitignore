@@ -24,4 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/components/test.js
+env_vars.yaml
 
