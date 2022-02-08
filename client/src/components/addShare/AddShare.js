@@ -56,21 +56,23 @@ const respose = await fetch(sharesApiURL);
     event.preventDefault();
 
     if(!isArrayEmpty) {
+      const shareDataObject = await getDataForShare(shareInfo['1. symbol'])
+      const convertedData = convertDataForChart(shareDataObject)
 
       const shareObject = {
         name: shareInfo['2. name'],
         symbol: shareInfo['1. symbol'],
         noOfShares: Number(noOfShares),
-        currentPrice: Number(symbolInfo['05. price'])
+        currentPrice: Number(symbolInfo['05. price']),
+        data: convertedData
+
       } 
 
       postShareObject(shareObject);
-      const shareDataObject = await getDataForShare(shareObject.symbol)
-      const convertedData = convertDataForChart(shareDataObject)
       
       
-      postShareData({name: shareObject.symbol,
-      data: convertedData})
+      // postShareData({name: shareObject.symbol,
+      // data: convertedData})
     }
 
     updateShareInfo({});

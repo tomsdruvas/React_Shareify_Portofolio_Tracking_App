@@ -26,7 +26,8 @@ const SharesAppContainer = ({removeShareFromDB, apiKey, shares, updateShareNo, t
 
     const graphRender = (share) => {
       setChartHeadline(share.symbol)
-      getShareData(share).then((result) => setShareData(result))
+      // getShareData(share).then((result) => setShareData(result))
+      setShareData(share.data)
     }
 
     const renderCorrectChart = () => {
