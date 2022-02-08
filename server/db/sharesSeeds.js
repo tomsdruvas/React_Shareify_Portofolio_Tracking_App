@@ -4,7 +4,7 @@ db.shares.insertMany([
   {
     name: "Illumina Inc",
     symbol: "ILMN",
-    noOfShares: 100,
+    noOfShares: 350,
     currentPrice : 358.38,
     data: [
       [
@@ -8996,7 +8996,7 @@ db.shares.insertMany([
     {
         name: "Tesla Inc",
         symbol: "TSLA",
-        noOfShares: 30,
+        noOfShares: 150,
         currentPrice: 923.32,
         data: [
           [
@@ -13844,7 +13844,7 @@ db.shares.insertMany([
     {
         name: "Moderna Inc",
         symbol: "MRNA",
-        noOfShares: 200,
+        noOfShares: 1000,
         currentPrice: 163.01,
         data: [
           [
@@ -15172,7 +15172,7 @@ db.shares.insertMany([
     {
         name: "Shopify Inc - Class A",
         symbol: "SHOP",
-        noOfShares: 50,
+        noOfShares: 200,
         currentPrice: 876,
         data: [
           [
@@ -17980,7 +17980,7 @@ db.shares.insertMany([
     {
         name: "Amazon.com Inc",
         symbol: "AMZN",
-        noOfShares: 10,
+        noOfShares: 50,
         currentPrice: 3152.79,
         data: [
           [
