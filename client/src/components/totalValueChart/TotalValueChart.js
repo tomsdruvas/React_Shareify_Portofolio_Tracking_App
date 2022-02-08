@@ -13,7 +13,6 @@ const TotalValueChart = ({shares}) => {
     
     const getTotalValueDB = async (shares) => {
         
-    
         const requests = shares.map(async (share, index) => {
             return getDataForShare(share).then((data) => {
                 return data

@@ -4,7 +4,7 @@
   },
   "name": "Illumina Inc",
   "symbol": "ILMN",
-  "noOfShares": 100,
+  "noOfShares": 350,
   "currentPrice": 355.92,
   "data": [
     [
@@ -9006,7 +9006,7 @@
   },
   "name": "Tesla Inc",
   "symbol": "TSLA",
-  "noOfShares": 100,
+  "noOfShares": 150,
   "currentPrice": 907.34,
   "data": [
     [
@@ -13864,7 +13864,7 @@
   },
   "name": "Moderna Inc",
   "symbol": "MRNA",
-  "noOfShares": 100,
+  "noOfShares": 1000,
   "currentPrice": 160.27,
   "data": [
     [
@@ -15202,7 +15202,7 @@
   },
   "name": "Amazon.com Inc",
   "symbol": "AMZN",
-  "noOfShares": 100,
+  "noOfShares": 50,
   "currentPrice": 3158.71,
   "data": [
     [
@@ -24508,7 +24508,7 @@
   },
   "name": "Shopify Inc - Class A",
   "symbol": "SHOP",
-  "noOfShares": 100,
+  "noOfShares": 200,
   "currentPrice": 866.89,
   "data": [
     [
