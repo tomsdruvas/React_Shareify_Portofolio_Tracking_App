@@ -16,10 +16,12 @@ const TotalValueChart = ({shares}) => {
         const clonedShares = JSON.parse(JSON.stringify(shares))
                
         const requests = clonedShares.map(async (share, index) => {
+            // console.log(share)
             let info = share["data"]
     for (let i = 0; i < info.length; i++){
         info[i][4] *= share.noOfShares
     }
+    
     return info
 
 
@@ -41,25 +43,32 @@ const TotalValueChart = ({shares}) => {
      
     const getTotal = () => {
         setLoading(true)
-        getTotalValueDB(shares).then(result => 
+        getTotalValueDB(shares).then(result =>
             {
+            const dscSortedList = result.sort((a,b) => b.length - a.length);
             let totalValueArr = []
-            result.forEach((data, index) => {
+            dscSortedList.forEach((data, index) => {
                 for (let i = 0; i < data.length; i++) {
                     if (index === 0) {
                         totalValueArr.push(data[i]);
                     }
                     else {
-                        for (let y=0; y < totalValueArr.length; y++){
+                        let dateAlreadyAdded = false
+                        for (let y=0; y < totalValueArr.length ; y++){                      
                             if (totalValueArr[y].includes(data[i][0])){
+                                dateAlreadyAdded = true
                                 totalValueArr[y][4]+=data[i][4]
 
                             }
+                        }
+                        if (dateAlreadyAdded = false){
+                        totalValueArr.unshift(data[i])
                         }
                       
                     }
                 }
             })
+            // console.log(totalValueArr)
             return totalValueArr
             })
             .then((result) => setTotalShareData(result),setLoading(false))
