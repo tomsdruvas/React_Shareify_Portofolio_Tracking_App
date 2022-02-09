@@ -12,11 +12,15 @@ const TotalValueChart = ({shares}) => {
 
     
     const getTotalValueDB = async (shares) => {
-        
-        const requests = shares.map(async (share, index) => {
-            return getDataForShare(share).then((data) => {
-                return data
-            })
+
+        const clonedShares = JSON.parse(JSON.stringify(shares))
+               
+        const requests = clonedShares.map(async (share, index) => {
+            let info = share["data"]
+    for (let i = 0; i < info.length; i++){
+        info[i][4] *= share.noOfShares
+    }
+    return info
 
 
             
@@ -52,11 +56,7 @@ const TotalValueChart = ({shares}) => {
 
                             }
                         }
-                        // if(totalValueArr[i][0] === data[i][0]){
-                        // totalValueArr[i][4] += data[i][4]}
-                        // else{
-                        //     console.log("Error with time entries")
-                        // }
+                      
                     }
                 }
             })
