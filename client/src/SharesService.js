@@ -1,9 +1,12 @@
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 // const baseURLData = 'http://localhost:5000/api/sharesData/'
+// const baseURL = process.env.REACT_APP_LOCAL_SHARES
 
-// const baseURL = 'http://localhost:5000/api/shares/'
-const baseURL = process.env.REACT_APP_LOCAL_SHARES
+
+
+const baseURL = 'http://localhost:5000/api/shares/'
+// const baseURL = 'https://api-dot-shareify-340417.nw.r.appspot.com/api/shares/'
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));

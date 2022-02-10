@@ -1,10 +1,10 @@
-# Group JavaScript Project - Full Stack Stock Tracker App
+# Group JavaScript Project - Full Stack Portfolio Tracker App
 
 ## Technologies used
 - JavaScript, Node, React, Express, MongoDB
 
 ## Important
-For app to work create a key.js file under client/src.  Obtain a key from https://www.alphavantage.co/support/#api-key and include it in the code below within the key.js file:
+Try running the app without the API key, sometimes it works. If it does not try this - create a key.js file under client/src.  Obtain a key from https://www.alphavantage.co/support/#api-key and include it in the code below within the key.js file:
 
 `import React from 'react';`
 
@@ -18,6 +18,7 @@ For app to work create a key.js file under client/src.  Obtain a key from https:
 - CD into server folder and run command ~ `npm install` to install dependencies
 - Run command ~ `npm run server:dev` - the server should now be running on port 5000
 - In a new terminal window but still in the server folder run command ~ `npm run seeds` to populate DB (may take a few minutes)
+- Alternatively, use the shares.json file provided in server/db and populate the MongoDB via Compass (it is a lot quicker than running the seeds file.)
 
 
 - CD into client folder and run command ~ `npm install` to install dependencies
